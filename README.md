@@ -35,7 +35,7 @@ jenkins:
 ### Volume Mounts
 
 The Jenkins container is customized mostly through volume mounts. Each project
-repo should have thier Jenkins CI jobs somewhere in the codebase.  Typically
+repo should have their Jenkins CI jobs somewhere in the codebase.  Typically
 those get stored in `env/jobs` and are mounted into the container into the
 Jenkins Job directory with the following Volume specification
 
