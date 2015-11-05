@@ -37,14 +37,14 @@ jenkins:
 The Jenkins container is customized mostly through volume mounts. Each project
 repo should have their Jenkins CI jobs somewhere in the codebase.  Typically
 those get stored in `env/jobs` and are mounted into the container into the
-Jenkins Job directory with the following Volume specification
+Jenkins Jobs directory with the following Volume specification
 
 `- ./env/jobs:/var/jenkins_home/jobs`
 
 We also need to mount in the Docker and Docker Compose binaries as well as the
 Docker Socket.  Mounting the Docker Socket allows the container to spawn other 
-peer containers outside of the current environment. The following configuration
-mounts those two binaries and the socket.
+peer containers outside of this container. The following configuration mounts 
+those two binaries and the socket.
 
 ```
 - /usr/bin/docker:/usr/bin/docker
