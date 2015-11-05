@@ -26,7 +26,7 @@ jenkins:
     # Mount the docker socket so we can execute from within this container
     - /var/run/docker.sock:/var/run/docker.sock
   environment:
-    - DEVTOOLS_PRIVATE_KEY
+    - DEVTOOLS_PRIVATE_KEY:
     - DNSDOCK_NAME: jenkins
     - DNSDOCK_IMAGE: example
     - VIRTUAL_HOST: build-project.ci.p2devcloud.com
