@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/usr/bin/with-contenv bash
 
 if [ -z "$DEVTOOLS_PRIVATE_KEY" ]; then
 
