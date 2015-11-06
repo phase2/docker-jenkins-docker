@@ -13,7 +13,8 @@ elif [ -n "$DEVTOOLS_PRIVATE_KEY" ]; then
 
   echo "DEVTOOLS_PRIVATE_KEY found. Setting up key..."
   mkdir $KEY_BASE
-  echo "$DEVTOOLS_PRIVATE_KEY" > $KEY_FILE
+  echo "$DEVTOOLS_PRIVATE_KEY" > $KEY_BASE/devtools.key.base64
+  openssl base64 -d -A -in $KEY_BASE/devtools.key.base64 -out $KEY_FILE
 
 else
 
@@ -27,7 +28,7 @@ else
   echo " "
   echo "or by setting the DEVTOOLS_PRIVATE_KEY env var with:"
   echo " "
-  echo "    export DEVTOOLS_PRIVATE_KEY=\"\$(cat ~/.ssh/id_rsa)\""
+  echo "    export DEVTOOLS_PRIVATE_KEY=\"\$(openssl base64 -e -A -in ~/.ssh/id_rsa)\""
   echo "##############################################################"
   exit  
 
