@@ -58,7 +58,7 @@ volume configuration will mount the key in the proper place
 The env variable needs to be set in the environment that is running the Docker 
 Compose command to start the container.  The variable `DEVTOOLS_PRIVATE_KEY` 
 should contain the contents of the private key file. It can be set with a 
-command similar to this: `export DEVTOOLS_PRIVATE_KEY="$(~/.ssh/id_rsa)"`. 
+command similar to this: `export DEVTOOLS_PRIVATE_KEY="$(cat ~/.ssh/id_rsa)"`. 
 Then in the Compose file you will tell it to use the env var from your current 
 environment by specifying it without a value as such:
 
