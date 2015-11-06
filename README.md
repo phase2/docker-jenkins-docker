@@ -25,14 +25,49 @@ jenkins:
     - /usr/bin/docker-compose:/usr/bin/docker-compose
     # Mount the docker socket so we can execute from within this container
     - /var/run/docker.sock:/var/run/docker.sock
+    # Add a private key via this volume OR the DEVTOOLS_PRIVATE_KEY env var
+    - ~/.ssh/id_rda:/root/.ssh/devtools.key
   environment:
-    - DEVTOOLS_PRIVATE_KEY:
-    - DNSDOCK_NAME: jenkins
-    - DNSDOCK_IMAGE: example
-    - VIRTUAL_HOST: build-project.ci.p2devcloud.com
+    # If /root/.ssh/devtools.key is not found it will look for this 
+    # variable. BY not setting a value is imports the variable from 
+    # the docker-compose execution environment
+    - DEVTOOLS_PRIVATE_KEY
 ```
 
-### Volume Mounts
+### Private Key Import
+
+When CI jobs have to deal with private repositories, Jenkins will need an
+SSH key to connect to GitHub and BitBucket. Since our images are meant to be
+public, we cannot build a private key into the image and we must import a key
+into the running container. We have two mechanisms to do this
+
+#### Volume Mount the Private Key
+
+If an external private key is volume mounted into the container at the location
+`/root/.ssh/devtools.key`, the container init system will use that key file to
+initialize the private key for the root user that run Jenkins. The following
+volume configuration will mount the key in the proper place
+
+```
+  volumes:
+    - ~/.ssh/id_rda:/root/.ssh/devtools.key
+```
+
+#### Environment Variable Private Key
+
+The env variable needs to be set in the environment that is running the Docker 
+Compose command to start the container.  The variable `DEVTOOLS_PRIVATE_KEY` 
+should contain the contents of the private key file. It can be set with a 
+command similar to this: `export DEVTOOLS_PRIVATE_KEY="$(~/.ssh/id_rsa)"`. 
+Then in the Compose file you will tell it to use the env var from your current 
+environment by specifying it without a value as such:
+
+```
+environment:
+  - DEVTOOLS_PRIVATE_KEY
+```
+
+### Other Volume Mounts
 
 The Jenkins container is customized mostly through volume mounts. Each project
 repo should have their Jenkins CI jobs somewhere in the codebase.  Typically
@@ -53,20 +88,6 @@ mounts those two binaries and the socket.
 ```
 
 ### Environment Variables
-
-There are a few variables that control the container.  The first of which 
-controls what SSH key jenkins uses to clone private repositories.  The env
-variable needs to be set in the environment that is running the Docker Compose
-command to start the container.  The variable `DEVTOOLS_PRIVATE_KEY` should 
-contain the contents of the private key file. It can be set with a command 
-similar to this: `export DEVTOOLS_PRIVATE_KEY="$(~/.ssh/id_rsa)"`. Then in the
-Compose file you will tell it to use the env var from your current environment
-by specifying it without a value as such:
-
-```
-environment:
-  - DEVTOOLS_PRIVATE_KEY
-```
 
 Other environment variables are used to control the container name resolution
 and what virtual host the container uses.  The variables `DNSDOCK_IMAGE`,
