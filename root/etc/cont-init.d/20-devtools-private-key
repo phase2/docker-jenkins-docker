@@ -22,13 +22,14 @@ else
   echo "Dev Tools Private Key was not set. You will not be able to  "
   echo "clone private repositories. "
   echo " "
-  echo "You can import a private key by volume mounting a key at "
+  echo "You can import a private key by setting the DEVTOOLS_PRIVATE_KEY "
+  echo "environment variable with:"
   echo " "
-  echo "$KEY_FILE"
+  echo " export DEVTOOLS_PRIVATE_KEY=\"\$(openssl base64 -e -A -in ~/.ssh/id_rsa)\""
   echo " "
-  echo "or by setting the DEVTOOLS_PRIVATE_KEY env var with:"
+  echo "or you can import a private key by volume mounting a key at "
   echo " "
-  echo "    export DEVTOOLS_PRIVATE_KEY=\"\$(openssl base64 -e -A -in ~/.ssh/id_rsa)\""
+  echo " $KEY_FILE"
   echo "##############################################################"
   exit  
 
