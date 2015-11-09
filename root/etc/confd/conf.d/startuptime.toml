@@ -1,0 +1,6 @@
+[template]
+src="startuptime.tmpl"
+dest="/var/log/services/README.txt"
+keys=[
+  "/",
+]
