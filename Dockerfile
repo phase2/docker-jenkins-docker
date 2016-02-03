@@ -25,8 +25,7 @@ RUN curl -L http://ftp.us.debian.org/debian/pool/main/a/apt/apt-transport-https_
 RUN apt-get update
 RUN apt-cache policy docker-engine
 RUN apt-get -y install docker-engine
-RUN curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose
-RUN chmod +x /usr/bin/docker-compose
+RUN curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
 
 # Run the s6-based init.
 ENTRYPOINT ["/init"]
