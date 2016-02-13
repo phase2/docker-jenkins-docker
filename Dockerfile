@@ -24,7 +24,7 @@ RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 581
 RUN curl -L http://ftp.us.debian.org/debian/pool/main/a/apt/apt-transport-https_1.0.9.8.2_amd64.deb > /tmp/apt-transport-https_1.0.9.8.2_amd64.deb && dpkg -i /tmp/apt-transport-https_1.0.9.8.2_amd64.deb
 RUN apt-get update
 RUN apt-cache policy docker-engine
-RUN apt-get -y install docker-engine
+RUN apt-get -y install docker-engine=1.9.1-0~jessie
 RUN curl -L https://github.com/docker/compose/releases/download/1.5.2/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
 
 # Run the s6-based init.
