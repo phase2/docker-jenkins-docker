@@ -21,7 +21,7 @@ RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
 
 # Add docker binaries directly
 RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-RUN curl -L http://ftp.us.debian.org/debian/pool/main/a/apt/apt-transport-https_1.0.9.8.2_amd64.deb > /tmp/apt-transport-https_1.0.9.8.2_amd64.deb && dpkg -i /tmp/apt-transport-https_1.0.9.8.2_amd64.deb
+RUN curl -L http://ftp.us.debian.org/debian/pool/main/a/apt/apt-transport-https_1.0.9.8.3_amd64.deb > /tmp/apt-transport-https_1.0.9.8.3_amd64.deb && dpkg -i /tmp/apt-transport-https_1.0.9.8.3_amd64.deb
 RUN apt-get update
 RUN apt-cache policy docker-engine
 RUN apt-get -y install docker-engine=1.9.1-0~jessie
