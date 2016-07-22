@@ -37,6 +37,7 @@ RUN install-versioned-plugins.sh \
         build-name-setter:1.6.5 \
         build-with-parameters:1.3 \
         checkstyle:3.46 \
+        copyartifact:1.38 \
         description-setter:1.10 \
         disable-failed-job:1.15 \
         git:2.5.2 \
