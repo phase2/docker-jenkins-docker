@@ -3,35 +3,22 @@
 KEY_BASE=/root/.ssh
 KEY_FILE=$KEY_BASE/devtools.key
 
-# First check to see if a volume mounted keyfile with a specific name exists
-# If that file doesn't exit, was the key passed in via an environment variable?
 if [ -e $KEY_FILE ]; then
 
   echo "KEY_FILE found. Setting up key..."
 
-elif [ -n "$DEVTOOLS_PRIVATE_KEY" ]; then
-
-  echo "DEVTOOLS_PRIVATE_KEY found. Setting up key..."
-  mkdir $KEY_BASE
-  echo "$DEVTOOLS_PRIVATE_KEY" > $KEY_BASE/devtools.key.base64
-  openssl base64 -d -A -in $KEY_BASE/devtools.key.base64 -out $KEY_FILE
-
 else
 
   echo "##############################################################"
-  echo "Dev Tools Private Key was not set. You will not be able to  "
+  echo "DevTools Private Key was not set. You will not be able to  "
   echo "clone private repositories. "
   echo " "
-  echo "You can import a private key by setting the DEVTOOLS_PRIVATE_KEY "
-  echo "environment variable with:"
-  echo " "
-  echo " export DEVTOOLS_PRIVATE_KEY=\"\$(openssl base64 -e -A -in ~/.ssh/id_rsa)\""
-  echo " "
-  echo "or you can import a private key by volume mounting a key at "
+  echo "You can import a private key by volume mounting a key at "
   echo " "
   echo " $KEY_FILE"
+  echo " "
   echo "##############################################################"
-  exit  
+  exit
 
 fi
 
