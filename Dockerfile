@@ -40,6 +40,7 @@ RUN install-versioned-plugins.sh \
         copyartifact:1.38 \
         description-setter:1.10 \
         disable-failed-job:1.15 \
+        envinject:1.92.1 \
         git:2.5.2 \
         git-client:1.19.7 \
         jenkins-flowdock-plugin:1.1.8 \
