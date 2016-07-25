@@ -45,16 +45,11 @@ Jenkins Jobs directory with the following Volume specification
 
 `- ./env/jobs:/var/jenkins_home/jobs`
 
-We also need to mount in the Docker and Docker Compose binaries as well as the
-Docker Socket.  Mounting the Docker Socket allows the container to spawn other
-peer containers outside of this container. The following configuration mounts
-those two binaries and the socket.
+We also need to mount in the Docker Socket.  Mounting the Docker Socket allows 
+the container to spawn other peer containers outside of this container. 
+The following configuration mounts the socket.
 
-```
-- /usr/bin/docker:/usr/bin/docker
-- /usr/bin/docker-compose:/usr/bin/docker-compose
-- /var/run/docker.sock:/var/run/docker.sock
-```
+`- /var/run/docker.sock:/var/run/docker.sock`
 
 ### Environment Variables
 
@@ -67,15 +62,15 @@ docs and should be referenced there.
 
 If you want to add custom plugins to your Jenkins container you will need to
 "roll your own" image.  It is pretty as easy and the following example `Dockerfile`
-should help get you up and running.  You likely want to start with the `plugins.txt`
-file that is included in this repo and add your own customizations to the end.
+should help get you up and running.
 
 ```
 FROM phase2/jenkins-docker
 
-COPY env/plugins.txt  /usr/share/jenkins/plugins.txt
-
-RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+RUN install-versioned-plugins.sh \
+        fun-plugin-one \
+        funner-plugin-two:1.22 \
+        the-funnest-plugin-of-all
 ```
 
 The above can be a `Dockerfile` in your repo and you then update your
