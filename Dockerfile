@@ -22,8 +22,8 @@ RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 581
 RUN curl -L http://ftp.us.debian.org/debian/pool/main/a/apt/apt-transport-https_1.0.9.8.3_amd64.deb > /tmp/apt-transport-https_1.0.9.8.3_amd64.deb && dpkg -i /tmp/apt-transport-https_1.0.9.8.3_amd64.deb
 RUN apt-get update
 RUN apt-cache policy docker-engine
-RUN apt-get -y install docker-engine=1.11.2-0~jessie
-RUN curl -L https://github.com/docker/compose/releases/download/1.7.1/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
+RUN apt-get -y install docker-engine=1.12.3-0~jessie
+RUN curl -L https://github.com/docker/compose/releases/download/1.9.0/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
 
 # This is needed until the upgrade to Jenkins 2.x
 COPY jenkins-support  /usr/local/bin/jenkins-support
