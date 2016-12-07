@@ -30,32 +30,32 @@ COPY jenkins-support  /usr/local/bin/jenkins-support
 COPY install-versioned-plugins.sh  /usr/local/bin/install-versioned-plugins.sh
 
 RUN install-versioned-plugins.sh \
-        analysis-collector:1.48 \
-        ansicolor:0.4.2 \
+        analysis-collector:1.49 \
+        ansicolor:0.4.3 \
         bitbucket:1.1.5 \
         bitbucket-build-status-notifier:1.3.0 \
         build-name-setter:1.6.5 \
         build-with-parameters:1.3 \
         checkstyle:3.46 \
-        copyartifact:1.38 \
+        copyartifact:1.38.1 \
         description-setter:1.10 \
         disable-failed-job:1.15 \
         envinject:1.92.1 \
-        git:2.5.2 \
-        git-client:1.19.7 \
+        git:3.0.1 \
+        git-client:2.1.0 \
         jenkins-flowdock-plugin:1.1.8 \
-        mercurial:1.55 \
+        mercurial:1.57 \
         multiple-scms:0.6 \
-        parameterized-trigger:2.31 \
-        performance:1.14 \
-        pmd:3.45 \
+        parameterized-trigger:2.32 \
+        performance:1.16 \
+        pmd:3.46 \
         rebuild:1.25 \
-        scm-api:1.2 \
+        scm-api:1.3 \
         ssh-credentials:1.12 \
-        tasks:4.49 \
+        tasks:4.50 \
         token-macro:1.12.1 \
         view-job-filters:1.27 \
-        warnings:4.56
+        warnings:4.58
 
 # Run the s6-based init.
 ENTRYPOINT ["/init"]
