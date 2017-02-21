@@ -37,7 +37,7 @@ jenkins:
     # Mount a stable location for the Jenkins workspace
     - /opt/development/example/jenkins/env/workspace:/opt/development/example/jenkins/env/workspace
     # Volume mount the private key
-    - ~/.ssh/id_rsa:/root/.ssh/devtools.key
+    - ~/.ssh/id_rsa:/root/.ssh/outrigger.key
 ```
 
 ## Features

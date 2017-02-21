@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 KEY_BASE=/root/.ssh
-KEY_FILE=$KEY_BASE/devtools.key
+KEY_FILE=$KEY_BASE/outrigger.key
 
 if [ -e $KEY_FILE ]; then
 
@@ -10,7 +10,7 @@ if [ -e $KEY_FILE ]; then
 else
 
   echo "##############################################################"
-  echo "DevTools Private Key was not set. You will not be able to  "
+  echo "Outrigger Private Key was not set. You will not be able to  "
   echo "clone private repositories. "
   echo " "
   echo "You can import a private key by volume mounting a key at "
