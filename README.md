@@ -20,13 +20,10 @@ jenkins:
   volumes:
     # Mount the local project jobs into Jenkins
     - ./env/jobs:/var/jenkins_home/jobs
-    # Install the commands to make docker work inside the container
-    - /usr/bin/docker:/usr/bin/docker
-    - /usr/bin/docker-compose:/usr/bin/docker-compose
     # Mount the docker socket so we can execute from within this container
     - /var/run/docker.sock:/var/run/docker.sock
     # Volume mount the private key
-    - ~/.ssh/id_rsa:/root/.ssh/devtools.key
+    - ~/.ssh/id_rsa:/root/.ssh/outrigger.key
 ```
 
 ### Private Key Import
