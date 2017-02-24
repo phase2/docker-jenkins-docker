@@ -45,6 +45,7 @@ RUN install-plugins.sh \
          build-name-setter:1.6.5 \
          build-with-parameters:1.3 \
          checkstyle:3.47 \
+         cloudbees-folder:5.18 \
          copyartifact:1.38.1 \
          description-setter:1.10 \
          disable-failed-job:1.15 \
@@ -71,7 +72,7 @@ RUN install-plugins.sh \
          timestamper:1.8.8 \
          token-macro:2.0 \
          view-job-filters:1.27 \
-         warnings:4.59 \
+         warnings:4.60 \
          workflow-aggregator:2.5 \
          workflow-multibranch:2.12 \
          ws-cleanup:0.32
@@ -82,5 +83,7 @@ ENTRYPOINT ["/init"]
 # Set up a standard volume for logs.
 VOLUME ["/var/log/services"]
 
+ENV JENKINS_ADMIN_PASS  admin
+
 # Start Jenkins by default
-CMD [ "/usr/local/bin/jenkins.sh" ]
+#CMD [ "/usr/local/bin/jenkins.sh" ]
