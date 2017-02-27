@@ -1,0 +1,6 @@
+[template]
+src="installutil.tmpl"
+dest="/var/jenkins_home/jenkins.install.InstallUtil.lastExecVersion"
+keys=[
+  "/",
+]

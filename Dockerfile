@@ -51,7 +51,7 @@ RUN install-plugins.sh \
          disable-failed-job:1.15 \
          docker-workflow:1.10 \
          environment-script:1.2.5 \
-         github:1.26.0 \
+         github:1.26.1 \
          github-branch-source:2.0.3 \
          github-organization-folder:1.6 \
          http-post:1.2 \
@@ -62,7 +62,7 @@ RUN install-plugins.sh \
          multi-slave-config-plugin:1.2.0 \
          naginator:1.17.2 \
          pam-auth:1.3 \
-         parameterized-trigger:2.32 \
+         parameterized-trigger:2.33 \
          performance:2.0 \
          pmd:3.46 \
          rebuild:1.25 \
@@ -82,8 +82,6 @@ ENTRYPOINT ["/init"]
 
 # Set up a standard volume for logs.
 VOLUME ["/var/log/services"]
-
-ENV JENKINS_ADMIN_PASS  admin
 
 # Start Jenkins by default
 #CMD [ "/usr/local/bin/jenkins.sh" ]

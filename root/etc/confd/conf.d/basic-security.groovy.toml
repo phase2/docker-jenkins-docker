@@ -4,4 +4,3 @@ dest="/var/jenkins_home/init.groovy.d/basic-security.groovy"
 keys=[
   "/",
 ]
-reload_cmd = "unset JENKINS_ADMIN_PASS"

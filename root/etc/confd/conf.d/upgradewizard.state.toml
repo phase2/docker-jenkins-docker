@@ -1,6 +1,0 @@
-[template]
-src="upgradewizard.state.tmpl"
-dest="/var/jenkins_home/jenkins.install.UpgradeWizard.state"
-keys=[
-  "/",
-]
