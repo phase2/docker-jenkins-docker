@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv sh
+
+# Start Jenkins, but remove the env var for the admin password to prevent it from leaking to a job
+exec env -u JENKINS_ADMIN_PASS /usr/local/bin/jenkins.sh

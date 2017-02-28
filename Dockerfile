@@ -1,8 +1,8 @@
-FROM jenkins:1.651.3
+FROM jenkins:2.32.2
 
 USER root
 
-RUN apt-get -y update
+RUN apt-get update
 
 # Add the s6 overlay.
 ENV S6_VERSION v1.19.1.1
@@ -19,57 +19,68 @@ ENV CONFD_OPTS '--backend=env --onetime'
 # This contains the repo for docker
 COPY root /
 
-# Add Docker binaries directly
 RUN apt-get -y install \
-        apt-transport-https \
-        software-properties-common
+      apt-transport-https \
+      software-properties-common
 RUN curl -fsSL https://apt.dockerproject.org/gpg | apt-key add -
 RUN add-apt-repository \
        "deb https://apt.dockerproject.org/repo/ \
        debian-jessie \
        main"
-RUN apt-get update
-RUN apt-cache policy docker-engine
-RUN apt-get -y install docker-engine=1.13.1-0~debian-jessie
-RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
+RUN apt-get update && \
+      apt-cache policy docker-engine && \
+      apt-get -y install docker-engine=1.13.1-0~debian-jessie && \
+      rm -rf /var/lib/apt/lists/*
+RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && \
+      chmod +x /usr/bin/docker-compose
 
-# This is needed until the upgrade to Jenkins 2.x
-COPY jenkins-support  /usr/local/bin/jenkins-support
-COPY install-versioned-plugins.sh  /usr/local/bin/install-versioned-plugins.sh
-
-RUN install-versioned-plugins.sh \
-        analysis-collector:1.49 \
-        ansicolor:0.4.3 \
-        bitbucket:1.1.5 \
-        bitbucket-build-status-notifier:1.3.0 \
-        build-name-setter:1.6.5 \
-        build-with-parameters:1.3 \
-        checkstyle:3.47 \
-        copyartifact:1.38.1 \
-        description-setter:1.10 \
-        disable-failed-job:1.15 \
-        envinject:1.93.1 \
-        git:3.0.5 \
-        git-client:2.2.1 \
-        jenkins-flowdock-plugin:1.1.8 \
-        mercurial:1.59 \
-        multiple-scms:0.6 \
-        parameterized-trigger:2.32 \
-        performance:2.0 \
-        pmd:3.46 \
-        rebuild:1.25 \
-        scm-api:2.0.7 \
-        ssh-credentials:1.13 \
-        tasks:4.50 \
-        token-macro:1.12.1 \
-        view-job-filters:1.27 \
-        warnings:4.59
+RUN install-plugins.sh \
+         analysis-collector:1.50 \
+         ansicolor:0.4.3 \
+         ant:1.4 \
+         bitbucket:1.1.5 \
+         bitbucket-approve:1.0.3 \
+         bitbucket-build-status-notifier:1.3.3 \
+         bitbucket-oauth:0.5 \
+         blueocean:1.0.0-b24 \
+         build-env-propagator:1.0 \
+         build-name-setter:1.6.5 \
+         build-with-parameters:1.3 \
+         checkstyle:3.47 \
+         cloudbees-folder:5.18 \
+         copyartifact:1.38.1 \
+         description-setter:1.10 \
+         disable-failed-job:1.15 \
+         docker-workflow:1.10 \
+         environment-script:1.2.5 \
+         github:1.26.1 \
+         github-branch-source:2.0.3 \
+         github-organization-folder:1.6 \
+         http-post:1.2 \
+         jenkins-flowdock-plugin:1.1.8 \
+         jenkins-jira-issue-updater:1.18 \
+         jira:2.3 \
+         matrix-auth:1.4 \
+         multi-slave-config-plugin:1.2.0 \
+         naginator:1.17.2 \
+         pam-auth:1.3 \
+         parameterized-trigger:2.33 \
+         performance:2.0 \
+         pmd:3.46 \
+         rebuild:1.25 \
+         run-condition:1.0 \
+         ssh-credentials:1.13 \
+         tasks:4.50 \
+         timestamper:1.8.8 \
+         token-macro:2.0 \
+         view-job-filters:1.27 \
+         warnings:4.60 \
+         workflow-aggregator:2.5 \
+         workflow-multibranch:2.12 \
+         ws-cleanup:0.32
 
 # Run the s6-based init.
 ENTRYPOINT ["/init"]
 
 # Set up a standard volume for logs.
 VOLUME ["/var/log/services"]
-
-# Start Jenkins by default
-CMD [ "/usr/local/bin/jenkins.sh" ]

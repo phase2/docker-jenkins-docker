@@ -56,7 +56,7 @@ repo should have their Jenkins CI jobs somewhere in the codebase. Typically
 those get stored in `env/jenkins/jobs` and are mounted into the container into
 the Jenkins Jobs directory with the following Volume specification
 
-`- ./env/jobs:/var/jenkins_home/jobs`
+`- ./env/jenkins/jobs:/var/jenkins_home/jobs`
 
 Each time the Jenkins container is started up the job configuration will reset
 back to what has been exported to the code. This creates stronger developer
@@ -88,7 +88,11 @@ processed on startup with environment variables passed in via the docker run
 command-line or via your docker-compose manifest file. Here are the "tunable"
 configurations offered by this image.
 
-Jenkins Docker has no templatized configuration at this time.
+### JENKINS_ADMIN_PASS
+
+You can pass this as an environment variable to container and it will customize the `admin`
+user password. If this is not set, the `admin` user will have a blank password.
+
 
 ## Customization
 
