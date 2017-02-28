@@ -82,6 +82,3 @@ ENTRYPOINT ["/init"]
 
 # Set up a standard volume for logs.
 VOLUME ["/var/log/services"]
-
-# Start Jenkins by default
-#CMD [ "/usr/local/bin/jenkins.sh" ]
