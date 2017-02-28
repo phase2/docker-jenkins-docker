@@ -1,6 +1,0 @@
-[template]
-src="config.xml.tmpl"
-dest="/var/jenkins_home/config.xml"
-keys=[
-  "/",
-]
