@@ -2,7 +2,7 @@ FROM jenkins:2.32.2
 
 USER root
 
-RUN apt-get -y update
+RUN apt-get update
 
 # Add the s6 overlay.
 ENV S6_VERSION v1.19.1.1
@@ -20,16 +20,17 @@ COPY root /
 
 # Add docker binaries directly
 RUN apt-get -y install \
-        apt-transport-https \
-        software-properties-common
+      apt-transport-https \
+      software-properties-common
 RUN curl -fsSL https://apt.dockerproject.org/gpg | apt-key add -
 RUN add-apt-repository \
        "deb https://apt.dockerproject.org/repo/ \
        debian-jessie \
        main"
-RUN apt-get update
-RUN apt-cache policy docker-engine
-RUN apt-get -y install docker-engine=1.13.1-0~debian-jessie
+RUN apt-get update && \
+      apt-cache policy docker-engine && \
+      apt-get -y install docker-engine=1.13.1-0~debian-jessie && \
+      rm -rf /var/lib/apt/lists/*
 RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && \
       chmod +x /usr/bin/docker-compose
 
@@ -41,6 +42,7 @@ RUN install-plugins.sh \
          bitbucket-approve:1.0.3 \
          bitbucket-build-status-notifier:1.3.3 \
          bitbucket-oauth:0.5 \
+         blueocean:1.0.0-b24 \
          build-env-propagator:1.0 \
          build-name-setter:1.6.5 \
          build-with-parameters:1.3 \
