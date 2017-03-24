@@ -40,9 +40,8 @@ RUN install-plugins.sh \
          ant:1.4 \
          bitbucket:1.1.5 \
          bitbucket-approve:1.0.3 \
-         bitbucket-build-status-notifier:1.3.3 \
          bitbucket-oauth:0.5 \
-         blueocean:1.0.0-b24 \
+         blueocean:1.0.0-rc1 \
          build-env-propagator:1.0 \
          build-name-setter:1.6.5 \
          build-with-parameters:1.3 \
@@ -55,8 +54,9 @@ RUN install-plugins.sh \
          disable-failed-job:1.15 \
          docker-workflow:1.10 \
          environment-script:1.2.5 \
+         git:3.1.0 \
          github:1.26.1 \
-         github-branch-source:2.0.3 \
+         github-branch-source:2.0.4 \
          github-organization-folder:1.6 \
          http-post:1.2 \
          jenkins-flowdock-plugin:1.1.8 \
@@ -67,7 +67,7 @@ RUN install-plugins.sh \
          naginator:1.17.2 \
          pam-auth:1.3 \
          parameterized-trigger:2.33 \
-         performance:2.0 \
+         performance:2.1 \
          pmd:3.46 \
          rebuild:1.25 \
          run-condition:1.0 \
