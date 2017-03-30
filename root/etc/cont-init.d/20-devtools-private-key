@@ -36,5 +36,5 @@ chown root:root $PRIVATE_KEY
 chmod 600 $PRIVATE_KEY
 
 # Make sure that commands don't need to prompt for host keys
-ssh-keyscan -H bitbucket.org >> $KEY_BASE/known_hosts
-ssh-keyscan -H github.com >> $KEY_BASE/known_hosts
+ssh-keyscan -H bitbucket.org 2>/dev/null >> $KEY_BASE/known_hosts
+ssh-keyscan -H github.com 2>/dev/null >> $KEY_BASE/known_hosts
