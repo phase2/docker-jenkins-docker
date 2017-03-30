@@ -30,7 +30,7 @@ RUN add-apt-repository \
        main"
 RUN apt-get update
 RUN apt-cache policy docker-engine
-RUN apt-get -y install docker-engine=1.13.1-0~debian-jessie
+RUN apt-get -y install docker-engine=17.03.1~ce-0~debian-jessie
 RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
 
 # This is needed until the upgrade to Jenkins 2.x
