@@ -1,4 +1,4 @@
-FROM jenkins:2.32.2
+FROM jenkins:2.32.3
 
 USER root
 
@@ -36,25 +36,27 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-co
 
 RUN install-plugins.sh \
          analysis-collector:1.50 \
-         ansicolor:0.4.3 \
+         ansicolor:0.5.0 \
          ant:1.4 \
          bitbucket:1.1.5 \
          bitbucket-approve:1.0.3 \
-         bitbucket-build-status-notifier:1.3.3 \
          bitbucket-oauth:0.5 \
-         blueocean:1.0.0-b24 \
+         blueocean:1.0.0-rc1 \
          build-env-propagator:1.0 \
          build-name-setter:1.6.5 \
          build-with-parameters:1.3 \
          checkstyle:3.47 \
-         cloudbees-folder:5.18 \
+         cloudbees-bitbucket-branch-source:2.1.2 \
+         cloudbees-folder:6.0.3 \
          copyartifact:1.38.1 \
+         crowd2:1.8 \
          description-setter:1.10 \
          disable-failed-job:1.15 \
          docker-workflow:1.10 \
          environment-script:1.2.5 \
+         git:3.1.0 \
          github:1.26.1 \
-         github-branch-source:2.0.3 \
+         github-branch-source:2.0.4 \
          github-organization-folder:1.6 \
          http-post:1.2 \
          jenkins-flowdock-plugin:1.1.8 \
@@ -65,7 +67,7 @@ RUN install-plugins.sh \
          naginator:1.17.2 \
          pam-auth:1.3 \
          parameterized-trigger:2.33 \
-         performance:2.0 \
+         performance:2.1 \
          pmd:3.46 \
          rebuild:1.25 \
          run-condition:1.0 \
@@ -76,7 +78,7 @@ RUN install-plugins.sh \
          view-job-filters:1.27 \
          warnings:4.60 \
          workflow-aggregator:2.5 \
-         workflow-multibranch:2.12 \
+         workflow-multibranch:2.14 \
          ws-cleanup:0.32
 
 # Run the s6-based init.
