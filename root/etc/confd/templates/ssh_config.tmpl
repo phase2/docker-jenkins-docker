@@ -1,0 +1,8 @@
+Host bitbucket.org
+  StrictHostKeyChecking no
+Host github.com
+  StrictHostKeyChecking no
+{{if getenv "JENKINS_LOW_SECURITY_DOMAIN"}}
+Host {{getenv "JENKINS_LOW_SECURITY_DOMAIN"}}
+  StrictHostKeyChecking no
+{{end}}

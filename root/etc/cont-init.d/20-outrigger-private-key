@@ -3,10 +3,9 @@
 KEY_BASE=/root/.ssh
 KEY_FILE=$KEY_BASE/outrigger.key
 
-if [ -e $KEY_FILE ]; then
-
+if [ -e $KEY_FILE ] && [ ! -d $KEY_FILE ]
+then
   echo "KEY_FILE found. Setting up key..."
-
 else
 
   echo "##############################################################"
@@ -38,3 +37,6 @@ chmod 600 $PRIVATE_KEY
 # Make sure that commands don't need to prompt for host keys
 ssh-keyscan -H bitbucket.org >> $KEY_BASE/known_hosts
 ssh-keyscan -H github.com >> $KEY_BASE/known_hosts
+if [[ "$JENKINS_LOW_SECURITY_DOMAIN" ]]; then
+  ssh-keyscan -H $JENKINS_LOW_SECURITY_DOMAIN >> $KEY_BASE/known_hosts
+fi

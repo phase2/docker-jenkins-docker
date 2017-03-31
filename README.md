@@ -93,6 +93,12 @@ configurations offered by this image.
 You can pass this as an environment variable to container and it will customize the `admin`
 user password. If this is not set, the `admin` user will have a blank password.
 
+### JENKINS_LOW_SECURITY_DOMAIN
+
+Specify a domain, such as `example.com`, which should have a "lower-security" treatment that
+does not require user input when the Jenkins container connects to the domain via SSH.
+
+This is intended for use in conjunction with git-based platform-as-a-service providers.
 
 ## Customization
 
