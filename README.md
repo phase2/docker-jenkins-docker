@@ -93,12 +93,27 @@ configurations offered by this image.
 You can pass this as an environment variable to container and it will customize the `admin`
 user password. If this is not set, the `admin` user will have a blank password.
 
-### JENKINS_LOW_SECURITY_DOMAIN
+### OUTRIGGER_STRICT_HOST_CHECKING_DISABLED
 
-Specify a domain, such as `example.com`, which should have a "lower-security" treatment that
-does not require user input when the Jenkins container connects to the domain via SSH.
+Specify a domain for an SSH config file Host entry. This domain will have the SSH
+settig `StrictHostKeyChecking` disabled. As a result, ssh or git commands from
+the Jenkins container will not be challenged for a hosts key entry.
 
-This is intended for use in conjunction with git-based platform-as-a-service providers.
+In keeping with SSH configuration syntax, you can use a single wildcard in your
+host name and may also specify multiple host names delimited by a single space.
+
+As long as you are using key-based authentication this represents a minimal risk
+of exposure to Man-in-the-Middle attacks, for more details see:
+http://www.gremwell.com/ssh-mitm-public-key-authentication
+
+#### Default Value & Example
+
+```
+OUTRIGGER_STRICT_HOST_CHECKING_DISABLED="github.com bitbucket.org"
+```
+
+If you do not wish Github and Bitbucket to have StrictHostKeyChecking disabled,
+set this environment variable to an empty string.
 
 ## Customization
 

@@ -1,8 +1,4 @@
-Host bitbucket.org
-  StrictHostKeyChecking no
-Host github.com
-  StrictHostKeyChecking no
-{{if getenv "JENKINS_LOW_SECURITY_DOMAIN"}}
-Host {{getenv "JENKINS_LOW_SECURITY_DOMAIN"}}
+{{if getenv "OUTRIGGER_STRICT_HOST_CHECKING_DISABLED"}}
+Host {{getenv "OUTRIGGER_STRICT_HOST_CHECKING_DISABLED"}}
   StrictHostKeyChecking no
 {{end}}
