@@ -40,6 +40,13 @@ jenkins:
     - ~/.ssh/id_rsa:/root/.ssh/outrigger.key
 ```
 
+For a quick spin, here's a simple Docker command with DNSDock support.
+Direct your browser to http://jenkins.outrigger.vm:8080.
+
+```
+docker run -l com.dnsdock.name=jenkins -l com.dnsdock.image=outrigger outrigger/jenkins-docker
+```
+
 ## Features
 
 ### Private Key Import
