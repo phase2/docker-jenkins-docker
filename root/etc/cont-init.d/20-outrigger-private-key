@@ -33,10 +33,3 @@ fi
 cp $KEY_FILE $PRIVATE_KEY
 chown root:root $PRIVATE_KEY
 chmod 600 $PRIVATE_KEY
-
-# Make sure that commands don't need to prompt for host keys
-ssh-keyscan -H bitbucket.org 2>/dev/null >> $KEY_BASE/known_hosts
-ssh-keyscan -H github.com 2>/dev/null >> $KEY_BASE/known_hosts
-if [[ "$JENKINS_LOW_SECURITY_DOMAIN" ]]; then
-  ssh-keyscan -H $JENKINS_LOW_SECURITY_DOMAIN 2>/dev/null >> $KEY_BASE/known_hosts
-fi
