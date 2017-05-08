@@ -1,4 +1,4 @@
-FROM jenkins:2.32.3
+FROM jenkins:2.46.1
 
 USER root
 
@@ -41,11 +41,11 @@ RUN install-plugins.sh \
          bitbucket:1.1.5 \
          bitbucket-approve:1.0.3 \
          bitbucket-oauth:0.5 \
-         blueocean:1.0.0-rc1 \
+         blueocean:1.0.1 \
          build-env-propagator:1.0 \
          build-name-setter:1.6.5 \
          build-with-parameters:1.3 \
-         checkstyle:3.47 \
+         checkstyle:3.48 \
          cloudbees-bitbucket-branch-source:2.1.2 \
          cloudbees-folder:6.0.3 \
          copyartifact:1.38.1 \
@@ -54,29 +54,29 @@ RUN install-plugins.sh \
          disable-failed-job:1.15 \
          docker-workflow:1.10 \
          environment-script:1.2.5 \
-         git:3.1.0 \
-         github:1.26.1 \
-         github-branch-source:2.0.4 \
+         git:3.3.0 \
+         github:1.27.0 \
+         github-branch-source:2.0.5 \
          github-organization-folder:1.6 \
          http-post:1.2 \
          jenkins-flowdock-plugin:1.1.8 \
          jenkins-jira-issue-updater:1.18 \
          jira:2.3 \
-         matrix-auth:1.4 \
+         matrix-auth:1.5 \
          multi-slave-config-plugin:1.2.0 \
          naginator:1.17.2 \
          pam-auth:1.3 \
          parameterized-trigger:2.33 \
-         performance:2.1 \
-         pmd:3.46 \
+         performance:2.2 \
+         pmd:3.47 \
          rebuild:1.25 \
          run-condition:1.0 \
          ssh-credentials:1.13 \
-         tasks:4.50 \
+         tasks:4.51 \
          timestamper:1.8.8 \
-         token-macro:2.0 \
+         token-macro:2.1 \
          view-job-filters:1.27 \
-         warnings:4.60 \
+         warnings:4.62 \
          workflow-aggregator:2.5 \
          workflow-multibranch:2.14 \
          ws-cleanup:0.32
