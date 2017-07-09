@@ -18,6 +18,7 @@ ENV CONFD_OPTS '--backend=env --onetime'
 
 # This contains the repo for docker
 COPY root /
+RUN mkdir -p /root/.ssh
 
 RUN apt-get -y install \
       apt-transport-https \
