@@ -1,0 +1,6 @@
+[template]
+src="ssh_config.tmpl"
+dest="/root/.ssh/config"
+keys=[
+  "/",
+]

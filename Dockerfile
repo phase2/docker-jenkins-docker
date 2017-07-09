@@ -18,6 +18,7 @@ ENV CONFD_OPTS '--backend=env --onetime'
 
 # This contains the repo for docker
 COPY root /
+RUN mkdir -p /root/.ssh
 
 RUN apt-get -y install \
       apt-transport-https \
@@ -80,6 +81,9 @@ RUN install-plugins.sh \
          workflow-aggregator:2.5 \
          workflow-multibranch:2.14 \
          ws-cleanup:0.32
+
+# Designate the default domains to limit strict key checking.
+ENV OUTRIGGER_STRICT_HOST_CHECKING_DISABLED 'github.com bitbucket.org'
 
 # Run the s6-based init.
 ENTRYPOINT ["/init"]
