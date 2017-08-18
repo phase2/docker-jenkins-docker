@@ -23,47 +23,47 @@ COPY root /
 RUN apt-get -y install \
         apt-transport-https \
         software-properties-common
-RUN curl -fsSL https://apt.dockerproject.org/gpg | apt-key add -
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 RUN add-apt-repository \
-       "deb https://apt.dockerproject.org/repo/ \
-       debian-jessie \
-       main"
+        "deb [arch=amd64] https://download.docker.com/linux/debian \
+        $(lsb_release -cs) \
+        stable"
 RUN apt-get update
-RUN apt-cache policy docker-engine
-RUN apt-get -y install docker-engine=17.03.1~ce-0~debian-jessie
-RUN curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
+RUN apt-cache policy docker-ce
+RUN apt-get -y install docker-ce=17.06.0~ce-0~debian
+RUN curl -L https://github.com/docker/compose/releases/download/1.15.0/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose && chmod +x /usr/bin/docker-compose
 
 # This is needed until the upgrade to Jenkins 2.x
 COPY jenkins-support  /usr/local/bin/jenkins-support
 COPY install-versioned-plugins.sh  /usr/local/bin/install-versioned-plugins.sh
 
 RUN install-versioned-plugins.sh \
-        analysis-collector:1.49 \
-        ansicolor:0.4.3 \
+        analysis-collector:1.52 \
+        ansicolor:0.5.1 \
         bitbucket:1.1.5 \
-        bitbucket-build-status-notifier:1.3.0 \
-        build-name-setter:1.6.5 \
-        build-with-parameters:1.3 \
-        checkstyle:3.47 \
+        bitbucket-build-status-notifier:1.3.3 \
+        build-name-setter:1.6.7 \
+        build-with-parameters:1.4 \
+        checkstyle:3.49 \
         copyartifact:1.38.1 \
         description-setter:1.10 \
         disable-failed-job:1.15 \
-        envinject:1.93.1 \
-        git:3.0.5 \
-        git-client:2.2.1 \
+        envinject:2.1.3 \
+        git:3.5.1 \
+        git-client:2.5.0 \
         jenkins-flowdock-plugin:1.1.8 \
-        mercurial:1.59 \
+        mercurial:2.0 \
         multiple-scms:0.6 \
-        parameterized-trigger:2.32 \
-        performance:2.0 \
-        pmd:3.46 \
+        parameterized-trigger:2.35.1 \
+        performance:3.2 \
+        pmd:3.49 \
         rebuild:1.25 \
-        scm-api:2.0.7 \
+        scm-api:2.2.0 \
         ssh-credentials:1.13 \
-        tasks:4.50 \
-        token-macro:1.12.1 \
+        tasks:4.52 \
+        token-macro:2.1 \
         view-job-filters:1.27 \
-        warnings:4.59
+        warnings:4.63
 
 # Run the s6-based init.
 ENTRYPOINT ["/init"]
